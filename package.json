@@ -7,6 +7,7 @@
     "dotenv": "^10.0.0",
     "minecraft-protocol": "^1.25.0",
     "mineflayer": "^3.7.0",
+    "mineflayer-pathfinder": "^1.6.2",
     "prismarine-viewer": "^1.19.3"
   }
 }

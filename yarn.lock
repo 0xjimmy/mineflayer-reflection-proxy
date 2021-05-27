@@ -562,7 +562,7 @@ mime@1.6.0:
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
 
-minecraft-data@^2.61.0, minecraft-data@^2.62.1, minecraft-data@^2.70.0, minecraft-data@^2.73.1, minecraft-data@^2.74.0, minecraft-data@^2.79.0, minecraft-data@^2.83.1:
+minecraft-data@^2.61.0, minecraft-data@^2.62.1, minecraft-data@^2.70.0, minecraft-data@^2.73.1, minecraft-data@^2.74.0, minecraft-data@^2.75.0, minecraft-data@^2.79.0, minecraft-data@^2.83.1:
   version "2.84.0"
   resolved "https://registry.yarnpkg.com/minecraft-data/-/minecraft-data-2.84.0.tgz#a3a9f8fe64627b264175f7250b850428fc2c8602"
   integrity sha512-3l8wZ62xlxclAG76r+ZUca/EfFBHeHI1o0z2Jc3Eu2DPF8lMgsAjOAWx9dVRK/s268XYOeoLdddvs0usJdeslg==
@@ -594,6 +594,19 @@ minecraft-protocol@^1.17.0, minecraft-protocol@^1.25.0:
     readable-stream "^3.0.6"
     uuid-1345 "^1.0.1"
     yggdrasil "^1.4.0"
+
+mineflayer-pathfinder@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/mineflayer-pathfinder/-/mineflayer-pathfinder-1.6.2.tgz#2b575a35c4a1769769b7af1c4dc41deaa96e631c"
+  integrity sha512-RGS819iLSD9OdSxfwQvVhtiBZc+heHcLuM3Jff2KEEupTLodbpvAxwscUcV8ySgsQ5eZ60615BWNl8ctIxNswQ==
+  dependencies:
+    minecraft-data "^2.75.0"
+    prismarine-block "^1.7.3"
+    prismarine-entity "^1.1.0"
+    prismarine-item "^1.5.0"
+    prismarine-nbt "^1.4.0"
+    prismarine-physics "^1.2.2"
+    vec3 "^0.1.7"
 
 mineflayer@^3.7.0:
   version "3.7.0"
@@ -744,7 +757,7 @@ prismarine-chunk@^1.20.3, prismarine-chunk@^1.22.0:
     uint4 "^0.1.2"
     vec3 "^0.1.3"
 
-prismarine-entity@^1.0.0:
+prismarine-entity@^1.0.0, prismarine-entity@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/prismarine-entity/-/prismarine-entity-1.2.0.tgz#1c87a4186b1a2ea33465d1b627944b5575ab0038"
   integrity sha512-4dQ9LYl6HDJQrwZHjSKU4D5VNyHRnfrjcw7eVLlbRPkuR50utW5mmfPi4ys9U7tHNmGWHC/cwjH9xzT75LUovQ==
@@ -765,7 +778,7 @@ prismarine-nbt@^1.3.0, prismarine-nbt@^1.4.0:
   dependencies:
     protodef "^1.9.0"
 
-prismarine-physics@^1.0.4:
+prismarine-physics@^1.0.4, prismarine-physics@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/prismarine-physics/-/prismarine-physics-1.2.2.tgz#28d6383626f8467696a1eead305b8dead148ceb6"
   integrity sha512-FkVjBb44e6RP6LWOXWMCORldVdymJ8VKjBqck2OcpOD74vVnOR0BRFtipGij1iQROt5Z7VMAkqrBxoeqAKZPOw==
