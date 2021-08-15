@@ -5,9 +5,16 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "minecraft-protocol": "^1.25.0",
-    "mineflayer": "^3.7.0",
+    "minecraft-protocol": "1.25.0",
+    "mineflayer": "3.9.0",
+    "mineflayer-antiafk": "^1.1.1",
     "mineflayer-pathfinder": "^1.6.2",
-    "prismarine-viewer": "^1.19.3"
+    "node-fetch": "^2.6.1",
+    "prismarine-viewer": "^1.19.3",
+    "testserve": "^1.0.2-2",
+    "unscrambler": "^1.2.5"
+  },
+  "scripts": {
+    "start": "node proxy"
   }
 }
