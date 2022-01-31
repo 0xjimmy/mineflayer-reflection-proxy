@@ -49,8 +49,6 @@ playerServer.on('login', (playerClient) => {
       port,
       username: email ? email : username,
       password,
-      session: { selectedProfile: { name: "BigMinerJimmy", id: "a47f779cd115421785a4b974efa5f4e7" } },
-      profilesFolder: '/home/jimmy/Work/minecraft/mineflayer-reflection-proxy',
       auth: 'mojang',
       keepAlive: true
     })
