@@ -12,5 +12,5 @@ The ``targetServer`` and ``playerConnection`` are [Client](https://node-minecraf
 ``setPlayerControl(boolean: state)`` is called to set which game packets are forwareded to the server, ``true`` for the player and ``false`` for the bot.
 
 ## TODO
-Allow loading multiple world instances at a time, to allow to control multiple bots or different target server connections.
-Allow user client to leave and reconnect syncing state from bot state.
+* Allow loading multiple world instances at a time, to allow to control multiple bots or different target server connections.
+* Allow user client to leave and reconnect syncing state from bot state.
