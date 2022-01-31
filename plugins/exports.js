@@ -3,5 +3,5 @@ module.exports = [
   require('./followPlayer.js'),
   // require('./fish.js'),
   require('./mark.js'),
-  require('./wordChallenge.js')
+  // require('./wordChallenge.js')
 ]

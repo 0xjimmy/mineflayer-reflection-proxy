@@ -4,20 +4,20 @@ const mineflayer = require('mineflayer')
 const mineflayerViewer = require('prismarine-viewer').mineflayer
 dotenv.config()
 
-const pluginLoader = require('./pluginLoader.js')
+const pluginLoader = require('./src/pluginLoader.js')
 
-const states = mc.states
 let host = process.env.HOST
 let port = process.env.PORT
-let version = process.env.VERSION 
+let version = process.env.VERSION
 let username = process.env.USERNAME
+let email = process.env.EMAIL
 let password = process.env.PASSWORD
 
-// Server Mineflayer connects to
+// Server user connects to
 const playerServer = mc.createServer({
   'online-mode': false,
   port: 25565,
-  version: version,
+  version,
   maxPlayers: 1
 })
 
@@ -29,30 +29,37 @@ playerServer.on('login', (playerClient) => {
 
   const setPlayerControl = (state) => connectedPlayer = state
 
+  let bot;
+
   // Server mineflayer connects to
   const botServer = mc.createServer({
     'online-mode': false,
     port: 25566,
-    version: '1.16.5',
+    version,
     maxPlayers: 1
   })
-  console.log('Started Mineflayer server at 127.0.0.1:25566')
 
-  let bot;
 
-  botServer.on('login', (botClient) => {
+  botServer.once('login', (botClient) => {
     console.log('Mineflayer connected to proxy')
     // Target Server
+    console.log('connecting to server')
     const server = mc.createClient({
       host,
       port,
-      username,
+      username: email ? email : username,
       password,
-      keepAlive: true,
-      version: version
+      session: { selectedProfile: { name: "BigMinerJimmy", id: "a47f779cd115421785a4b974efa5f4e7" } },
+      profilesFolder: '/home/jimmy/Work/minecraft/mineflayer-reflection-proxy',
+      auth: 'mojang',
+      keepAlive: true
     })
+    playerClient.once('end', () => {
+      server.end()
+      botServer.close()
+    });
     console.log(`Proxy connected ${host}:${port}`)
-  
+
     const { commands, commandExec } = pluginLoader(server, playerClient, bot, setPlayerControl)
 
     const lastLook = { pitch: 0, yaw: 0 }
@@ -68,7 +75,7 @@ playerServer.on('login', (playerClient) => {
         }
         if ('look' === meta.name) {
           meta.name = 'position'
-          data = { ...data, ...bot.entity.position, flags: 0, teleportId: 1}
+          data = { ...data, ...bot.entity.position, flags: 0, teleportId: 1 }
           lastLook.pitch = data.pitch
           lastLook.yaw = data.yaw
         }
@@ -79,7 +86,7 @@ playerServer.on('login', (playerClient) => {
         }
       }
     })
-    
+
     playerClient.on('packet', (data, meta) => {
       if (meta.name === 'tab_complete') console.log(meta.name, data)
       if (meta.name === 'chat' && data.message.startsWith('/') && commandExec.command.includes(data.message.substr(1).split(' ')[0])) {
@@ -88,12 +95,7 @@ playerServer.on('login', (playerClient) => {
         args.splice(0, 1)
         commandExec.exec[commandExec.command.indexOf(command)](args)
       } else if (connectedPlayer && meta.name !== 'keep_alive' && meta.name !== 'tab_complete') {
-        if (meta.name === 'chat') console.log(data, meta)
-        // console.log('CLIENT => SERVER:', meta.name)
         server.write(meta.name, data)
-        if ('position' === meta.name) {
-          data = { x: data.x, y: data.y, z: data.z, yaw: lastLook.yaw, pitch: lastLook.pitch }
-        }
         if ('position_look' === meta.name) {
           meta.name = 'position'
           lastLook.pitch = data.pitch
@@ -101,17 +103,20 @@ playerServer.on('login', (playerClient) => {
         }
         if ('look' === meta.name) {
           meta.name = 'position'
-          // data = { ...data, ...bot.entity.position }
+          data.x = bot.entity.position.x
+          data.y = bot.entity.position.y
+          data.z = bot.entity.position.z
           lastLook.pitch = data.pitch
           lastLook.yaw = data.yaw
+        }
+        if ('position' === meta.name) {
+          data = { x: data.x, y: data.y, z: data.z, yaw: lastLook.yaw, pitch: lastLook.pitch }
         }
         botClient.write(meta.name, data)
       }
     })
 
     server.on('packet', (data, meta) => {
-      // const skipPackets = ['entity_velocity', 'rel_entity_move']
-      // if (skipPackets.includes(meta.name)) console.log('SERVER => CLIENT:', meta.name, data)
       if (meta.state === 'play') {
         if (meta.name === 'declare_commands') {
           const initalCommands = data.nodes.length
@@ -132,21 +137,21 @@ playerServer.on('login', (playerClient) => {
 
   })
 
-    bot = mineflayer.createBot({
-      host: 'localhost',
-      username,
-      version: '1.16.5',
-      port: 25566,
-    })
+  bot = mineflayer.createBot({
+    host: '127.0.0.1',
+    port: 25566,
+    username,
+    version
+  })
 
-    console.log('Created Mineflayer instance')
-    // bot.once('spawn', () => {
-    //   console.log('Spawned')
+  console.log('Created Mineflayer instance')
+  bot.once('spawn', () => {
+    console.log('Spawned')
     //   process.exit()
-    //   mineflayerViewer(bot, { port: 3000 })
-    //   console.log("prismarine viewer on 127.0.0.1:3000")
-    // })
+    // mineflayerViewer(bot, { port: 3000, firstPerson: true })
+    //  console.log("prismarine viewer on 127.0.0.1:3000")
+  })
 
-  
+
 })
 

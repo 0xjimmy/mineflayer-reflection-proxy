@@ -1,4 +1,4 @@
-const plugins = require('./plugins/exports.js')
+const plugins = require('../plugins/exports.js')
 
 const helpMessages = ['/proxyhelp - This message here']
 

@@ -17,12 +17,12 @@ const commands = [
     helpMessage: 'Put a beacon light at location, /mark',
     exec: () => {
       const { x, y, z } = bot.entity.position
-      console.log(bot.blockAt(Vec3(-184, 67, 113)))
-      console.log(bot.blockAt(Vec3(-184, 65, 113)))
-      player.write('block_change', { location: { x: Math.floor(x), z: Math.floor(z), y: Math.floor(y) - 1 }, type: 5660 })
-      player.write('chat', { message: `{"text":"Marked ${x},${z}"}`, position: 1, sender: '00000000-0000-0000-0000-000000000000' })
+      // console.log(bot.blockAt(Vec3(-184, 67, 113)))
+      // console.log(bot.blockAt(Vec3(-184, 65, 113)))
+      player.write('block_change', { location: { x: Math.floor(x), z: Math.floor(z), y: Math.floor(y) - 1 }, type: 157 })
+      player.write('chat', { message: `{"text":"Marked ${Math.floor(x)},${Math.floor(z)}"}`, position: 1, sender: '00000000-0000-0000-0000-000000000000' })
     }
-  } 
+  }
 ]
 
 
