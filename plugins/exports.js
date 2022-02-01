@@ -1,3 +1,4 @@
+/*
 module.exports = [
   require('./walkTo.js'),
   require('./followPlayer.js'),
@@ -5,3 +6,7 @@ module.exports = [
   require('./mark.js'),
   // require('./wordChallenge.js')
 ]
+*/
+
+
+export default [];

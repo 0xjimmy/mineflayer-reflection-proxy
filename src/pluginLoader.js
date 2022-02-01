@@ -1,9 +1,10 @@
-const plugins = require('../plugins/exports.js')
+import plugins from '../plugins/exports.js'
 
 const helpMessages = ['/proxyhelp - This message here']
 
 function loadPlugins(server, player, bot, setPlayerControl) {
   const helpCommand = () => {
+    player.write('chat', { message: JSON.stringify({ "text": "", extra: [{ text: "\[Proxy\] ", bold: true, color: "gold" }, { text: `Proxy Commands:` }] }), position: 1, sender: '00000000-0000-0000-0000-000000000000' })
     helpMessages.forEach(msg => {
       player.write('chat', {
         message: `{"text":"${msg}"}`,
@@ -48,4 +49,4 @@ function loadPlugins(server, player, bot, setPlayerControl) {
   return { commands, commandExec }
 }
 
-module.exports = loadPlugins
+export default loadPlugins
